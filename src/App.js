@@ -8,24 +8,37 @@ import "./App.css";
 class App extends Component {
   
   state = {
-    friends
+    friends,
+    picked: []
   };
 
-  removeFriend = id => {
+  chooseFriend = id => {
     
-    const friends = this.state.friends.filter(friend => friend.id !== id);
-   
-    this.setState({ friends });
+    let tempArray = this.state.picked;
+
+    // if this id in tempArrray : alert lose
+    // else add id to array
+    
+    if (tempArray.indexOf(id) >= 0) {
+      alert("You lose");
+  } else {
+     tempArray.push(id);
+  }
+  
+    
+    // push new array into state
+    this.setState({ picked: tempArray });
+    
   };
 
   
   render() {
     return (
       <Wrapper>
-        <Title>Friends List</Title>
+        <Title></Title>
         {this.state.friends.map(friend => (
           <FriendCard
-          removeFriend={this.removeFriend}
+          chooseFriend={this.chooseFriend}
           id={friend.id}
           key={friend.id}
           name={friend.name}
