@@ -11,24 +11,27 @@ class App extends Component {
   state = {
     friends,
     picked: [],
-    score: 0
-
+    score: 0,
+    winLose: ""
   };
 
   chooseFriend = id => {
     // conditional for picks //
     let tempArray = this.state.picked;
     if (tempArray.indexOf(id) >= 0) {
-      alert("You lose");
+      alert("incorrect");
     } else {
       tempArray.push(id);
-      alert("You won");
+      alert("correct");
+
+      // this.setState({winLose: tempArray});
 
       // score //
       this.setState(prevState => {
         return { score: prevState.score + 1 }
       });
     }
+
 
     // shuffles cards //
     this.setState({ picked: tempArray });
@@ -47,11 +50,12 @@ class App extends Component {
     return (
       <Wrapper>
 
-        <Navbar>{this.state.score}</Navbar>
+        <Navbar>
+          {this.state.score}
+          {this.state.winLose}
+        </Navbar>
 
-
-
-        <Title>Click Game</Title>
+        <Title>CLICKY</Title>
         {this.state.friends.map(friend => (
           <FriendCard
             chooseFriend={this.chooseFriend}
@@ -59,8 +63,7 @@ class App extends Component {
             key={friend.id}
             name={friend.name}
             image={friend.image}
-            occupation={friend.occupation}
-            location={friend.location}
+         
           />
         ))}
       </Wrapper>

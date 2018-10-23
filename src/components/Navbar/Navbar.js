@@ -17,7 +17,12 @@ const styles = {
 
 const Navbar = props => (
   <div style={styles.card}>
-    <div style={styles.heading}>Score: {props.children}</div>
+    <div
+      style={styles.heading}>Score: {props.children}
+    </div>
+    <div
+      style={styles.heading}>{props.winLose}
+    </div>
   </div>
 );
 
